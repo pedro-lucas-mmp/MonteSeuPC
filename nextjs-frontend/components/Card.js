@@ -34,7 +34,6 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
     checkCompatibility();
   }, [hardware, tipo, isCompatible, cartData]);
 
-
   if (justCompatible && !incompatibilidades.length < 1) {return; }
   return (
     <CardStyled style={selected}>
