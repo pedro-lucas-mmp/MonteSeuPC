@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const Galeria = ({userJwt, userData, usersData}) => {
     const API_URL = process.env['API_URL'];
+    const API_URL_IMAGE = process.env['NEXT_PUBLIC_API_URL_IMAGE'];
     const [showInput, setShowInput] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -27,7 +28,7 @@ const Galeria = ({userJwt, userData, usersData}) => {
         try {
             const formData = new FormData();
             formData.append('files', selectedImage);
-            console.log(selectedImage);
+            //console.log(selectedImage);
     
             const responseUploadImage = await fetch(`${API_URL}/api/upload`, {
                 method: 'POST',
@@ -39,7 +40,7 @@ const Galeria = ({userJwt, userData, usersData}) => {
             const responseData = await responseUploadImage.json();
 
             const envioBody = JSON.stringify({ postImagem: responseData[0].id })
-            console.log(envioBody);
+            //console.log(envioBody);
             const responseSetUserImage = await fetch(`${API_URL}/api/users/${userData.id}`, {
                 method: 'PUT',
                 headers: {
@@ -74,7 +75,7 @@ const Galeria = ({userJwt, userData, usersData}) => {
                                 <figure className='galeria-figure' key={index}>
                                     <img
                                         className='galeria-imagem'
-                                        src={`${API_URL}${user.postImagem.url}`}
+                                        src={`${API_URL_IMAGE}${user.postImagem.url}`}
                                         alt={`Post de ${user.username}`}
                                     />
                                     <figcaption className='galeria-caption'>
