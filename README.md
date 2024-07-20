@@ -10,13 +10,13 @@ Para iniciar, será necessário baixar o projeto e executar os seguintes process
 
 
 -  APLICAÇÃO:
--  - Em strapi-backend, deverá executar (em caso de WARN, ignorar e seguir):
-    - npm install
-    - npm run develop
+  - Em strapi-backend, deverá executar (em caso de WARN, ignorar e seguir):
+      - npm install
+      - npm run develop
 
--  - Em nextjs-frontend, deverá executar:
-    - npm install
-    - npm run dev
+  - Em nextjs-frontend, deverá executar:
+      - npm install
+      - npm run dev
 
 - CRIAÇÃO DE ENTIDADES:
   - Após inicialização do o comando npm run develop em strapi-backend, será possível o acesso ao painel administrativo do Strapi, devidamente com a URL(http://localhost:1337/admin).
