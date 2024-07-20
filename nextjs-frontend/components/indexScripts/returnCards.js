@@ -1,4 +1,4 @@
-import Card from '../../components/Card'
+import Card from '../Card.js'
 import isCompatible from './returnCompatibilityTests.js'
 
 export function returnCards(hardwareData, renderKey, tipo, cartAdd, cartData, justCompatible){

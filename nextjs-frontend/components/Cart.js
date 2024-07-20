@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useState, useEffect} from 'react'
-import {returnIncompatibilidadesText} from '../pages/indexScripts/returnCompatibilityTests'
+import {returnIncompatibilidadesText} from './indexScripts/returnCompatibilityTests'
 
 
 export default function Cart({ hardware, tipo, isCompatible, cartData, itemTittle, cartAdd, setSelectedCategory}) {

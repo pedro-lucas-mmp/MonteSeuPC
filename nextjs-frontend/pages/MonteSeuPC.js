@@ -2,8 +2,8 @@ import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
 import NavHardware from 'components/NavHardware';
 import { useRouter } from 'next/router';
-import { returnCards } from './indexScripts/returnCards.js'
-import { returnCart } from './indexScripts/returnCart.js'
+import { returnCards } from '../components/indexScripts/returnCards.js'
+import { returnCart } from '../components/indexScripts/returnCart.js'
 import styled from '@emotion/styled';
 import Cookies from 'js-cookie';
 import fetchUserData from '/components/returnUserData';

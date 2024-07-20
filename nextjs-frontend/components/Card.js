@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react'
-import {returnIncompatibilidadesText} from '../pages/indexScripts/returnCompatibilityTests'
+import {returnIncompatibilidadesText} from './indexScripts/returnCompatibilityTests'
 
 export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, justCompatible}) {
   const {info, valorEmBRL} = require('./infoModule')
