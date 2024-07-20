@@ -1,0 +1,109 @@
+{
+  "kind": "collectionType",
+  "collectionName": "placa_de_videos",
+  "info": {
+    "singularName": "placa-de-video",
+    "pluralName": "placa-de-videos",
+    "displayName": "Placa de Vídeo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "plataforma": {
+      "type": "enumeration",
+      "enum": [
+        "NVIDIA",
+        "AMD"
+      ],
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "NVIDIA",
+        "AMD",
+        "ASUS",
+        "MSI ",
+        "GALAX",
+        "Gigabyte",
+        "EVGA",
+        "ZOTAC",
+        "Sapphire",
+        "XFX",
+        "PowerColor",
+        "PNY",
+        "ASRock",
+        "Inno3D",
+        "Palit",
+        "Gainward",
+        "Colorful",
+        "PCYes"
+      ],
+      "required": true
+    },
+    "chipset": {
+      "type": "string",
+      "required": true
+    },
+    "memoria": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "interface_memoria": {
+      "type": "enumeration",
+      "enum": [
+        "GDDR3",
+        "GDDR4",
+        "GDDR5",
+        "GDDR5X",
+        "GDDR6",
+        "GDDR6X"
+      ],
+      "required": true
+    },
+    "tdp": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "dimensao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dimensao.dimensao"
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "conectores_alimentacao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "conectores-alimentacao.conectores-alimentacao"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

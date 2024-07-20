@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fontes",
+  "info": {
+    "singularName": "fonte",
+    "pluralName": "fontes",
+    "displayName": "Fonte",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "Adata",
+        "Corsair",
+        "EVGA",
+        "Seasonic",
+        "Thermaltake",
+        "Cooler Master",
+        "Antec",
+        "NZXT",
+        "Be Quiet!",
+        "Silverstone",
+        "FSP",
+        "XFX",
+        "Super Flower",
+        "Rosewill",
+        "BitFenix",
+        "Deepcool",
+        "Fractal Design",
+        "Aerocool",
+        "Cougar",
+        "Riotoro",
+        "Fortrek"
+      ],
+      "required": true
+    },
+    "potencia_watts": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "selo_eficiencia": {
+      "type": "enumeration",
+      "enum": [
+        "Generic",
+        "PLUS 80 White",
+        "PLUS 80 Bronze",
+        "PLUS 80 Silver",
+        "PLUS 80 Gold",
+        "PLUS 80 Platinum",
+        "PLUS 80 Titanium"
+      ],
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "ATX",
+        "Micro ATX",
+        "SFX"
+      ],
+      "required": true
+    },
+    "modularidade": {
+      "type": "enumeration",
+      "enum": [
+        "Full Modular",
+        "Semi Modular",
+        "Non Modular"
+      ],
+      "required": true
+    },
+    "conectores_alimentacao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "conectores-alimentacao.conectores-alimentacao"
+    },
+    "dimensao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dimensao.dimensao"
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    }
+  }
+}

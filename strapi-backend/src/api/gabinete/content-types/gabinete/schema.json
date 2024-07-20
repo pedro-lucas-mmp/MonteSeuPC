@@ -1,0 +1,134 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gabinetes",
+  "info": {
+    "singularName": "gabinete",
+    "pluralName": "gabinetes",
+    "displayName": "Gabinete",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "Montech",
+        "Corsair",
+        "NZXT",
+        "Cooler Master",
+        "Thermaltake",
+        "Fractal Design",
+        "Phanteks",
+        "Be Quiet!",
+        "Lian Li",
+        "Antec",
+        "Silverstone",
+        "Deepcool",
+        "Cougar",
+        "Rosewill",
+        "InWin",
+        "BitFenix",
+        "AeroCool",
+        "Raidmax",
+        "Xigmatek",
+        "Zalman",
+        "Chieftec",
+        "TGT"
+      ],
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Full Tower",
+        "Mid Tower",
+        "Mini Tower",
+        "Micro Tower",
+        "Mini ITX",
+        "Micro ATX",
+        "Cube Case",
+        "Small Form Factor (SFF)",
+        "Ultra Tower"
+      ],
+      "required": true
+    },
+    "placa_mae_compatibility": {
+      "type": "component",
+      "repeatable": false,
+      "component": "placa-mae-compatibility.placa-mae-compatibility"
+    },
+    "dimensao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dimensao.dimensao"
+    },
+    "tipo_fonte": {
+      "type": "enumeration",
+      "enum": [
+        "ATX",
+        "Micro ATX",
+        "SFX"
+      ],
+      "required": true
+    },
+    "baias_2_5_armazenamento": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "baias_3_5_armazenamento": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "comprimento_gpu": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "comprimento_psu": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "min": 0
+    },
+    "altura_cpu_cooler": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "radiador_compatibility": {
+      "type": "component",
+      "repeatable": false,
+      "component": "radiador-compatibility.radiador-compatibility",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    }
+  }
+}

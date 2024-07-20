@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "singularName": "cart",
+    "pluralName": "carts",
+    "displayName": "Cart",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "placa_mae": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::placa-mae.placa-mae"
+    },
+    "processador": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::processador.processador"
+    },
+    "memoria_ram": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::memoria-ram.memoria-ram"
+    },
+    "armazenamento": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::armazenamento.armazenamento"
+    },
+    "placa_de_video": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::placa-de-video.placa-de-video"
+    },
+    "gabinete": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::gabinete.gabinete"
+    },
+    "fonte": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fonte.fonte"
+    },
+    "cpu_cooler": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cpu-cooler.cpu-cooler"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "cart"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "armazenamentos",
+  "info": {
+    "singularName": "armazenamento",
+    "pluralName": "armazenamentos",
+    "displayName": "Armazenamento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "Samsung",
+        "Western Digital",
+        "Crucial",
+        "ADATA",
+        "Kingston",
+        "Seagate",
+        "SanDisk",
+        "Intel",
+        "Corsair",
+        "PNY",
+        "Toshiba",
+        "Transcend",
+        "Team Group",
+        "Gigabyte",
+        "Lexar",
+        "Hitachi",
+        "LaCie",
+        "Maxtor",
+        "OCZ",
+        "Patriot",
+        "HP",
+        "Fujitsu"
+      ],
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "SSD Sata",
+        "SSD M.2 Sata",
+        "SSD NVME",
+        "HDD 3.5\"",
+        "HDD 2.5\""
+      ],
+      "required": true
+    },
+    "capacidade_GB": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "kind": "collectionType",
+  "collectionName": "processadores",
+  "info": {
+    "singularName": "processador",
+    "pluralName": "processadores",
+    "displayName": "Processador",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "default": 0,
+      "required": true,
+      "min": 1
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "plataforma": {
+      "type": "enumeration",
+      "enum": [
+        "AMD",
+        "Intel"
+      ],
+      "required": true
+    },
+    "familia": {
+      "type": "enumeration",
+      "enum": [
+        "Ryzen 3",
+        "Ryzen 5",
+        "Ryzen 7",
+        "Ryzen 9",
+        "Core i3",
+        "Core i5",
+        "Core i7",
+        "Core i9"
+      ],
+      "required": true
+    },
+    "modelo": {
+      "type": "string",
+      "required": true
+    },
+    "socket": {
+      "type": "string",
+      "required": true
+    },
+    "tdp": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "grafico_integrado": {
+      "type": "boolean",
+      "required": true
+    },
+    "barramento_ram": {
+      "type": "enumeration",
+      "enum": [
+        "DDR3",
+        "DDR4",
+        "DDR5"
+      ],
+      "required": true
+    },
+    "frequencia_ram": {
+      "type": "biginteger",
+      "min": "1",
+      "required": true
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    },
+    "link": {
+      "type": "string"
+    },
+    "geracao": {
+      "type": "enumeration",
+      "enum": [
+        "primeira",
+        "segunda",
+        "terceira",
+        "quarta",
+        "quinta",
+        "sexta",
+        "setima",
+        "oitava",
+        "nona",
+        "decima",
+        "decima_primeira",
+        "decima_segunda",
+        "decima_terceira",
+        "decima_quarta",
+        "decima_quinta"
+      ],
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "collectionName": "components_socket_sockets",
+  "info": {
+    "displayName": "Socket_Compatibility",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "AM3": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "AM3_Plus": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "AM4": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "AM5": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA1151": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA1200": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA1700": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA1150": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA1155": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "sTRX4": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "sTR4": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "LGA2011": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

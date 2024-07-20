@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_placa_mae_compatibility_placa_mae_compatibilities",
+  "info": {
+    "displayName": "placa_mae_compatibility"
+  },
+  "options": {},
+  "attributes": {
+    "ATX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Micro_ATX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Mini_ITX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "EATX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "XL_ATX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Flex_ATX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "WTX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Mini_STX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Nano_ITX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "Pico_ITX": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

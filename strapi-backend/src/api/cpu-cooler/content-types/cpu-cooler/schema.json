@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cpu_coolers",
+  "info": {
+    "singularName": "cpu-cooler",
+    "pluralName": "cpu-coolers",
+    "displayName": "cpu_cooler",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "Noctua",
+        "Montech",
+        "AMD",
+        "INTEL",
+        "Cooler Master",
+        "Corsair",
+        "DeepCool",
+        "NZXT",
+        "Be Quiet!",
+        "Thermaltake",
+        "Arctic",
+        "Deepcool",
+        "Scythe",
+        "Cryorig",
+        "Fractal Design",
+        "EVGA",
+        "Raijintek",
+        "Silverstone",
+        "ID-Cooling",
+        "Enermax",
+        "Antec",
+        "Zalman",
+        "Phanteks",
+        "Akasa"
+      ],
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Air Cooler",
+        "Water Cooler"
+      ],
+      "required": true
+    },
+    "socket_compatibility": {
+      "type": "component",
+      "repeatable": false,
+      "component": "socket.socket",
+      "required": true
+    },
+    "dimensao_radiador_dissipador": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dimensao.dimensao",
+      "required": true
+    },
+    "quantidade_ventoinha": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "tdp": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "radiador_nominal": {
+      "type": "enumeration",
+      "enum": [
+        "non_radiador",
+        "radiador_120",
+        "radiador_140",
+        "radiador_240",
+        "radiador_280",
+        "radiador_360"
+      ],
+      "required": true,
+      "default": "non_radiador"
+    },
+    "link": {
+      "type": "string"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    }
+  }
+}

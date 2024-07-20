@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_radiador_compatibility_radiador_compatibilities",
+  "info": {
+    "displayName": "Radiador_compatibility",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "radiador_120": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "radiador_140": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "radiador_240": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "radiador_280": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "radiador_360": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

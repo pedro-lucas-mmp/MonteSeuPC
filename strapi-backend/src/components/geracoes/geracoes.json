@@ -1,0 +1,84 @@
+{
+  "collectionName": "components_geracoes_geracoes",
+  "info": {
+    "displayName": "geracoes"
+  },
+  "options": {},
+  "attributes": {
+    "primeira": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "segunda": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "terceira": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "quarta": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "quinta": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "sexta": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "setima": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "oitava": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "nona": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima_primeira": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima_segunda": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima_terceira": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima_quarta": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "decima_quinta": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "kind": "collectionType",
+  "collectionName": "placa_maes",
+  "info": {
+    "singularName": "placa-mae",
+    "pluralName": "placa-maes",
+    "displayName": "Placa mãe",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tier": {
+      "type": "integer",
+      "min": 1,
+      "required": true
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "marca": {
+      "type": "enumeration",
+      "enum": [
+        "ASUS",
+        "MSI",
+        "Gigabyte",
+        "ASRock",
+        "EVGA",
+        "Biostar",
+        "Zotac",
+        "Supermicro",
+        "Intel",
+        "Colorful"
+      ],
+      "required": true
+    },
+    "socket": {
+      "type": "string",
+      "required": true
+    },
+    "chipset": {
+      "type": "string",
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "ATX",
+        "Micro_ATX",
+        "Mini_ITX",
+        "Nano_ITX",
+        "Pico_ITX",
+        "EATX",
+        "XL_ATX",
+        "Flex_ATX",
+        "WTX",
+        "Mini_STX"
+      ],
+      "required": true
+    },
+    "slots_memoria": {
+      "type": "integer",
+      "default": 2,
+      "max": 8,
+      "min": 2,
+      "required": true
+    },
+    "tipo_memoria": {
+      "type": "enumeration",
+      "enum": [
+        "DDR3",
+        "DDR4",
+        "DDR5"
+      ],
+      "required": true
+    },
+    "freq_memoria_suportada": {
+      "type": "biginteger",
+      "required": true
+    },
+    "slots_pciex16": {
+      "type": "integer",
+      "min": 0,
+      "required": true
+    },
+    "slots_pciex8": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "slots_pciex4": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "conectores_armazenamento_sata": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "conectores_armazenamento_m2": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "saida_video": {
+      "type": "boolean",
+      "required": true
+    },
+    "wifi_bluetooth": {
+      "type": "boolean",
+      "required": true
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slots_pciex1": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "plataforma": {
+      "type": "enumeration",
+      "enum": [
+        "AMD",
+        "Intel"
+      ],
+      "required": true
+    },
+    "dimensao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dimensao.dimensao"
+    },
+    "conectores_alimentacao": {
+      "type": "component",
+      "repeatable": false,
+      "component": "conectores-alimentacao.conectores-alimentacao"
+    },
+    "preco": {
+      "type": "float",
+      "required": true,
+      "min": 0
+    },
+    "link": {
+      "type": "string"
+    },
+    "geracoes_compativeis": {
+      "type": "component",
+      "repeatable": false,
+      "component": "geracoes.geracoes"
+    }
+  }
+}

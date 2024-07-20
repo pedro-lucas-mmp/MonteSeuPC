@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_dimensao_dimensaos",
+  "info": {
+    "displayName": "dimensao",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "comprimento": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "largura": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    },
+    "altura": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "default": 0
+    }
+  }
+}
