@@ -5,6 +5,7 @@ import {returnIncompatibilidadesText} from './indexScripts/returnCompatibilityTe
 
 export default function Cart({ hardware, tipo, isCompatible, cartData, itemTittle, cartAdd, setSelectedCategory}) {
   const {info, valorEmBRL} = require('./infoModule');
+  const API_URL_IMAGES = process.env['API_URL_IMAGES'];
   const [compatible, setCompatible] = useState(null)
   const [incompatibilidades, setIncompatibilidades] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -51,7 +52,7 @@ export default function Cart({ hardware, tipo, isCompatible, cartData, itemTittl
             </div> 
             ) : null}
             <i className="fa-solid fa-x deleteX" onClick={() => cartAdd(tipo, 0, 'delete')}></i>
-            <img onClick={() => togglePopup(process.env.API_URL + hardware_url)} src={process.env.API_URL + hardware_url} alt={hardware.data.attributes.nome} />
+            <img onClick={() => togglePopup(API_URL_IMAGES + hardware_url)} src={API_URL_IMAGES + hardware_url} alt={hardware.data.attributes.nome} />
           </div>
           <div className='details'>
           <span>{valorEmBRL(hardware.data.attributes.preco)}</span>
