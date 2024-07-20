@@ -9,7 +9,7 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
   const [showPopup, setShowPopup] = useState(false);
   const [popupImage, setPopupImage] = useState(null);
   const colorCompatible = 'rgba(255, 0, 0, 0.8)';
-  const API_URL_IMAGES = process.env['API_URL_IMAGES'];
+  const API_URL_IMAGE = process.env['NEXT_PUBLIC_API_URL_IMAGE'];
   const isSelected = cartData[tipo]?.data?.id === hardware.id;
   const borderColor = isSelected ? 'black' : '';
   const boxShadow = isSelected
@@ -46,7 +46,7 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
               <i className="fa-solid fa-exclamation custom-size"></i>
             </div> 
             ) : null}
-            <img onClick={() => togglePopup(API_URL_IMAGES + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGES + hardware.attributes.imagem.data.attributes.url} />
+            <img onClick={() => togglePopup(API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url} />
           </div>
           <div className='item-nome'>
               <strong >{hardware.attributes.nome}</strong>
