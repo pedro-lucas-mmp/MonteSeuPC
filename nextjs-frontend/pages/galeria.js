@@ -73,11 +73,8 @@ const Galeria = ({userJwt, userData, usersData}) => {
                         {usersData.map((user, index) => (
                             user.postImagem ? (
                                 <figure className='galeria-figure' key={index}>
-                                    <img
-                                        className='galeria-imagem'
-                                        src={`${API_URL_IMAGE}${user.postImagem.url}`}
-                                        alt={`Post de ${user.username}`}
-                                    />
+                                    {API_URL_IMAGE == process.env.API_URL ? <img className='galeria-imagem' src={`${API_URL_IMAGE}${user.postImagem.url}`} alt={`Post de ${user.username}`} /> : <img className='galeria-imagem' src={`${user.postImagem.url}`} alt={`Post de ${user.username}`} />}
+                                    {/* <img className='galeria-imagem' src={`${API_URL_IMAGE}${user.postImagem.url}`} alt={`Post de ${user.username}`} /> */}
                                     <figcaption className='galeria-caption'>
                                         Máquina de {user.username.split(' ')[0].substring(0, 15)}
                                     </figcaption>
