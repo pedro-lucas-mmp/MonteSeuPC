@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import fetchUserData from '/components/returnUserData';
 import Register from '../components/Register';
 import Login from '../components/Login';
+import returnUserJwt from '../components/returnUserJwt';
 
 const EnvioCarrinho = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const EnvioCarrinho = styled.div`
   z-index: 999;
   `
   
-const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, placa_de_videoData, gabineteData, fonteData, cpu_coolerData, armazenamentoData, }) => {
+const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, placa_de_videoData, gabineteData, fonteData, cpu_coolerData, armazenamentoData, userJwt}) => {
   const {valorEmBRL} = require('/components/infoModule');
   const [cartData, setCartData] = useState(null)
   const [cartId, setCartId] = useState(null)
@@ -103,7 +104,7 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
   useEffect(() => {
     const fetchCartInfo = async () => {
       if (userData) {
-        const cartInfo = await returnCartTable(userData.cart.id);
+        const cartInfo = await returnCartTable(userData.cart.id, userJwt);
         setCartId(cartInfo.data.id);
         setCartData(cartInfo.data.attributes);
       }
@@ -369,13 +370,20 @@ function returnPopulateCartFields(){
   return populateQuery
 }
 
-async function returnCartTable(userCartId){
+async function returnCartTable(userCartId, userJwt){
   const API_URL = process.env['API_URL'];
+  const reqOptionsCart = {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${userJwt}`,
+      'Content-Type': 'application/json'
+    }};
+  
   if (!userCartId){
-    const cartResponse = await fetch(`${API_URL}/api/carts/?${returnPopulateCartFields()}`);
+    const cartResponse = await fetch(`${API_URL}/api/carts/?${returnPopulateCartFields()}`, reqOptionsCart);
     return await cartResponse.json();
   }else {
-    const cartResponse = await fetch(`${API_URL}/api/carts/${userCartId}?${returnPopulateCartFields()}`);
+    const cartResponse = await fetch(`${API_URL}/api/carts/${userCartId}?${returnPopulateCartFields()}`, reqOptionsCart);
     return await cartResponse.json();
   }
   
@@ -398,7 +406,7 @@ function returnTablesUrls(){
 }
 
 export async function getServerSideProps() {
-  
+    
   const fetchTableData = async (url) => {
     const res = await fetch(url);
     return res.json();
