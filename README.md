@@ -10,11 +10,11 @@ Para iniciar, será necessário baixar o projeto e executar os seguintes process
 
 
 -  APLICAÇÃO:
-  - Em strapi-backend, deverá executar (em caso de WARN, ignorar e seguir):
+-  - Em strapi-backend, deverá executar (em caso de WARN, ignorar e seguir):
     - npm install
     - npm run develop
 
-  - Em nextjs-frontend, deverá executar:
+-  - Em nextjs-frontend, deverá executar:
     - npm install
     - npm run dev
 
