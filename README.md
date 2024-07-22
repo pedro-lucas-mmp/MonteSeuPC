@@ -1,4 +1,5 @@
 Bem vindo ao Projeto MonteSeuPC!
+Acesso ao Deploy: https://monte-seu-pc-hmy09tdms-plankitos-projects.vercel.app/
 
 Para mais informações da proposta do projeto, acesse: https://medium.com/@Plankito/meu-projeto-monteseupc-306932087af8
 
