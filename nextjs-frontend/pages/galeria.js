@@ -13,7 +13,54 @@ const Galeria = ({userJwt, userData, usersData}) => {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setSelectedImage(file);
+            //setSelectedImage(file);
+
+            const imgname = event.target.files[0].name;
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                const img = new Image();
+                img.src = reader.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    console.log(canvas)
+                    const aspect_ratio = 1.5;
+                    const height_crop = img.width / aspect_ratio;
+                    const width_crop = img.height * aspect_ratio;
+                    if (height_crop < img.height) {
+                        canvas.width = img.width;
+                        canvas.height = height_crop;
+                    }
+                    if (width_crop < img.width) {
+                        canvas.width = width_crop;
+                        canvas.height = img.height;
+                    }
+                    else{
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                    }
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(
+                        img,
+                         0,
+                         0
+                    );
+                    canvas.toBlob(
+                        (blob) => {
+                            const file = new File([blob], imgname, {
+                                type: "image/png",
+                                lastModified: Date.now(),
+                            });
+                            console.log(file);
+                            setSelectedImage(file);
+                        },
+                        "image/jpeg",
+                        1
+                    )
+                }
+            }
+
         }
     };
 
