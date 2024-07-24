@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
 import NavHardware from 'components/NavHardware';
+import { useDebouncedCallback } from 'use-debounce'
 import { useRouter } from 'next/router';
 import { returnCards } from '../components/indexScripts/returnCards.js'
 import { returnCart } from '../components/indexScripts/returnCart.js'
@@ -44,6 +45,7 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
   const [popupEnvio, setPopupenvio] = useState(false)
   const [justCompatible, setJustCompatible] = useState(false);
   const [toggleCompatible, setToggleCompatible] = useState(true);
+  const [search, setSearch] = useState(false);
   
   function valorCart(cartData) {
     let valorTotal = 0;
@@ -59,7 +61,9 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
     return valorEmBRL(valorTotal);
   }
   
-
+  const handleSearchChange = useDebouncedCallback((event) => {
+    setSearch(event.target.value)
+  }, 300);
   
   const borderColor = guiado ? 'black' : '';
   const backgroundColor = guiado
@@ -220,7 +224,9 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
       </div>
       <div className='sub-main'>
         <div className="container-card">
+          
           <div className='toggle-guiado'>
+            
             <div className='buttons'>
               <button style={selected} onClick={toggleGuiado}>Seleção Guiada: <strong>{guiado ? "Ligada" : "Desligada"}</strong></button>
             </div>
@@ -232,57 +238,60 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
             </div>
           </div>
           <h2 className='tittle-card'>Produtos à Selecionar</h2> 
+          <div className='search'>
+            <input type="search" placeholder="Pesquisar" name="search" onChange={handleSearchChange}></input>
+          </div>
         <div className='cards'>{selectedCategory === 'todos' ?(
         <>
-          <h4 className="call-card" id='processador'>Processadores</h4><div className='grid-cards'>{returnCards(processadorData, renderKey, "processador", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='placa_mae'>Placas Mãe</h4><div className='grid-cards'>{returnCards(placa_maeData, renderKey, "placa_mae", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='memoria_ram'>Memórias Ram</h4><div className='grid-cards'>{returnCards(memoria_ramData, renderKey, "memoria_ram", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='cpu_cooler'>CPU Coolers</h4><div className='grid-cards'>{returnCards(cpu_coolerData, renderKey, "cpu_cooler", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='placa_de_video'>Placas de Vídeo</h4><div className='grid-cards'>{returnCards(placa_de_videoData, renderKey, "placa_de_video", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='armazenamento'>Armazenamentos</h4><div className='grid-cards'>{returnCards(armazenamentoData, renderKey, "armazenamento", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card" id='fonte'>Fontes</h4><div className='grid-cards'>{returnCards(fonteData, renderKey, "fonte", cartAdd, cartData, justCompatible)}</div>
-          <h4 className="call-card"id='gabinete'>Gabinetes</h4><div className='grid-cards'>{returnCards(gabineteData, renderKey, "gabinete", cartAdd, cartData, justCompatible)}</div>
+          <h4 className="call-card" id='processador'>Processadores</h4><div className='grid-cards'>{returnCards(processadorData, renderKey, "processador", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='placa_mae'>Placas Mãe</h4><div className='grid-cards'>{returnCards(placa_maeData, renderKey, "placa_mae", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='memoria_ram'>Memórias Ram</h4><div className='grid-cards'>{returnCards(memoria_ramData, renderKey, "memoria_ram", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='cpu_cooler'>CPU Coolers</h4><div className='grid-cards'>{returnCards(cpu_coolerData, renderKey, "cpu_cooler", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='placa_de_video'>Placas de Vídeo</h4><div className='grid-cards'>{returnCards(placa_de_videoData, renderKey, "placa_de_video", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='armazenamento'>Armazenamentos</h4><div className='grid-cards'>{returnCards(armazenamentoData, renderKey, "armazenamento", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card" id='fonte'>Fontes</h4><div className='grid-cards'>{returnCards(fonteData, renderKey, "fonte", cartAdd, cartData, justCompatible, search)}</div>
+          <h4 className="call-card"id='gabinete'>Gabinetes</h4><div className='grid-cards'>{returnCards(gabineteData, renderKey, "gabinete", cartAdd, cartData, justCompatible, search)}</div>
         </>
       ) : (
         <>
           {selectedCategory === 'processador' && (
             <><h4 className="call-card" id="processador">Processadores</h4>
-              <div className='grid-cards'>{returnCards(processadorData, renderKey, 'processador', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(processadorData, renderKey, 'processador', cartAdd, cartData, justCompatible, search)}</div>
             </>
           )}
           {selectedCategory === 'placa_mae' && (
             <><h4 className="call-card" id="placa_mae">Placas Mãe</h4>
-              <div className='grid-cards'>{returnCards(placa_maeData, renderKey, 'placa_mae', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(placa_maeData, renderKey, 'placa_mae', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'memoria_ram' && (
             <><h4 className="call-card" id="memoria_ram">Memórias Ram</h4>
-              <div className='grid-cards'>{returnCards(memoria_ramData, renderKey, 'memoria_ram', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(memoria_ramData, renderKey, 'memoria_ram', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'cpu_cooler' && (
             <><h4 className="call-card" id="cpu_cooler">CPU Coolers</h4>
-              <div className='grid-cards'>{returnCards(cpu_coolerData, renderKey, 'cpu_cooler', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(cpu_coolerData, renderKey, 'cpu_cooler', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'placa_de_video' && (
             <><h4 className="call-card" id="placa_de_video">Placas de Vídeo</h4>
-              <div className='grid-cards'>{returnCards(placa_de_videoData, renderKey, 'placa_de_video', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(placa_de_videoData, renderKey, 'placa_de_video', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'armazenamento' && (
             <><h4 className="call-card" id="armazenamento">Armazenamentos</h4>
-              <div className='grid-cards'>{returnCards(armazenamentoData, renderKey, 'armazenamento', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(armazenamentoData, renderKey, 'armazenamento', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'fonte' && (
             <><h4 className="call-card" id="fonte">Fontes</h4>
-              <div className='grid-cards'>{returnCards(fonteData, renderKey, 'fonte', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(fonteData, renderKey, 'fonte', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
           {selectedCategory === 'gabinete' && (
             <><h4 className="call-card" id="gabinete">Gabinetes</h4>
-              <div className='grid-cards'>{returnCards(gabineteData, renderKey, 'gabinete', cartAdd, cartData, justCompatible)}</div>
+              <div className='grid-cards'>{returnCards(gabineteData, renderKey, 'gabinete', cartAdd, cartData, justCompatible, search)}</div>
               </>
           )}
         </>

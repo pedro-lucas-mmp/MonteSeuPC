@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react'
 import {returnIncompatibilidadesText} from './indexScripts/returnCompatibilityTests'
 
-export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, justCompatible}) {
+export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, justCompatible, search}) {
   const {info, valorEmBRL} = require('./infoModule')
   const [incompatibilidades, setIncompatibilidades] = useState([]);
   const [blocked, setBlocked] = useState(true);
@@ -19,6 +19,20 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
   const backgroundColor = incompatibilidades.length > 0 ? colorCompatible : '';
   const style = {...(backgroundColor && { backgroundColor })};
   
+  const toDontSearch = ['createdAt', 'updatedAt', 'publishedAt', 'imagem', 'link',
+    'conectores_alimentacao', 'dimensao', 'placa_mae_compatibility', 'radiador_compatibility',
+    'dimensao_radiador_dissipador', 'socket_compatibility'
+  ]
+
+  const matchFound = Object.keys(hardware.attributes).some(key => {
+    if (!toDontSearch.includes(key)){
+    const searchString = String(search).toUpperCase()
+    //console.log(key)
+    const value = String(hardware.attributes[key]).toUpperCase();
+    //console.log(key, value)
+    return  value.includes(searchString);
+  }});
+
   const togglePopup = (imageSrc) => {
     setPopupImage(imageSrc);
     setShowPopup(!showPopup);
@@ -34,7 +48,8 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
     checkCompatibility();
   }, [hardware, tipo, isCompatible, cartData]);
 
-  if (justCompatible && !incompatibilidades.length < 1) {return; }
+  if (justCompatible && !incompatibilidades.length < 1) {return null; }
+  if (matchFound || search == false) {
   return (
     <CardStyled style={selected}>
       <div className='item-card' >
@@ -87,7 +102,7 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
         </ImagePopup>
       )}
     </CardStyled>
-  );
+  );}else {return false;}
 }
 
 const CardStyled = styled.div`

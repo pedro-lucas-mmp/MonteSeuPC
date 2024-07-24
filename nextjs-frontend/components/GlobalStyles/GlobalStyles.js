@@ -452,6 +452,7 @@ const GlobalStyles = () => (
             margin: 5px;
             display: inline-block;
             height: auto;
+            min-height: 670px;
             overflow: hidden;
             border-radius: 8px;
             border-width: 1px;
@@ -486,6 +487,8 @@ const GlobalStyles = () => (
             padding: 10px 20px;
             margin-bottom: 5px;
             transition: background-color 0.3s, color 0.3s, transform 0.2s;
+            //height: -webkit-fill-available;
+            height: 100%;
             cursor: pointer;
         }
 
@@ -498,11 +501,12 @@ const GlobalStyles = () => (
         .grid-cards{
             display: grid;
             
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            //justify-content: space-evenly;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 0.3333fr));
+            justify-content: space-evenly;
             //grid-template-columns: repeat(auto-fit, 250px);
-            grid-gap: 10px;
+            //grid-gap: 10px;
             padding: 10px;
+            //justify-content: center;
             //flex-grow: 1;
         }
         ////////////////////////////////////////////////TESTAR GRID CSS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -547,14 +551,28 @@ const GlobalStyles = () => (
         .cart-items{
             margin-top: 20px;
         }
-        
+        .search{
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin: 10px 0;
+            text-align: left;
+            border-width: 1px;
+            border-color: gray;
+            input{
+                width: 100%;
+                padding: 6px;
+                border: none;
+                font-size: 1.15rem;
+            }
+        }
         .sub-main {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 5px;
-
-            
         }
         .blur{
             filter: blur(10px);
@@ -681,24 +699,12 @@ const GlobalStyles = () => (
                 
             }
         }
-            @media screen and (max-width: 550px){
-            .toggle-guiado{
-            display: block;
-            }
-            .buttons{
-            width: 100%;
-            :first-of-type{
-                text-align: center;
-            }
-            :last-of-type{
-                text-align: center;
-            }
-        }
-        }
-        @media screen and (max-width: 800px) {
+            
+        @media screen and (max-width: 801px) {
             .container-navhardware{
             position: static;
-            }   
+            }
+            
         }
 
         @media screen and (max-width: 1000px){
@@ -707,6 +713,9 @@ const GlobalStyles = () => (
             }
             .details-popup{
                 margin-left: 0px;
+            }
+            .grid-cards{
+            grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
             }
         }
         @media screen and (max-width: 1200px) {
@@ -722,6 +731,26 @@ const GlobalStyles = () => (
             .cart-items{
                 display: flex;
                 overflow: auto;
+            }
+        }
+        @media screen and (max-width: 552px){
+            .toggle-guiado{
+            display: block;
+                button{
+                    width: 100%;
+                }
+            }
+            .buttons{
+            width: 100%;
+            :first-of-type{
+                text-align: center;
+            }
+            :last-of-type{
+                text-align: center;
+            }
+        }
+        .grid-cards{
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
 
