@@ -112,21 +112,20 @@ function cpu_coolerVSprocessador(cartHardware, cpuCooler){
     const placaMaePresente = !!cartHardware?.placa_mae?.data;
 
     if (processadorPresente && placaMaePresente) {
-        // Verificar compatibilidade com o socket do processador \\
         if (!cpuCooler.socket_compatibility[processadorCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket do Processador.");
         }
-        // Verificar compatibilidade com o socket da placa-mãe \\
         if (!cpuCooler.socket_compatibility[placa_maeCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket da Placa mãe.");
         }
     } else if (processadorPresente) {
-        // Verificar apenas o processador \\
         if (!cpuCooler.socket_compatibility[processadorCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket do Processador.");
         }
+        if (processadorCart.tdp > cpuCooler.tdp){
+            incompatibilidades.push("CPU cooler possui má dissipação para o Processador selecionado.");
+        }
     } else if (placaMaePresente) {
-        // Verificar apenas a placa-mãe \\
         if (!cpuCooler.socket_compatibility[placa_maeCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket da Placa mãe.");
         }
@@ -191,7 +190,7 @@ function fonteCompatible(cartHardware, fonte) {
     const { processador, placa_de_video, placa_mae, armazenamento } = cartHardware;
     const totalTDP = processador.data.attributes.tdp + placa_de_video.data.attributes.tdp;
 
-    // Verificar potência com eficiência 80 Plus \\
+
     const eficiencia =  fonte.selo_eficiencia === 'Generic' ? 0.8 :
                         fonte.selo_eficiencia === 'PLUS 80 White' ? 0.8 : 
                         fonte.selo_eficiencia === 'PLUS 80 Bronze' ? 0.82 :
@@ -204,7 +203,7 @@ function fonteCompatible(cartHardware, fonte) {
         incompatibilidades.push("Potência da fonte não é suficiente considerando a eficiência.");
     }
 
-    // Verificar conectores \\
+
     const conectoresNecessarios = {
         'mobo_24pin': 0,
         'cpu4pin': 0,
@@ -214,8 +213,6 @@ function fonteCompatible(cartHardware, fonte) {
         'pcie12pin': 0,
         'molex4pin': 0
     };
-
-    // Adicionar conectores necessários da placa-mãe \\
     if (placa_mae.data.attributes.conectores_alimentacao) {
         Object.keys(placa_mae.data.attributes.conectores_alimentacao).forEach(key => {
             if (key !== 'id') {
@@ -223,8 +220,6 @@ function fonteCompatible(cartHardware, fonte) {
             }
         });
     }
-
-    // Adicionar conectores necessários da placa de vídeo \\
     if (placa_de_video.data.attributes.conectores_alimentacao) {
         Object.keys(placa_de_video.data.attributes.conectores_alimentacao).forEach(key => {
             if (key !== 'id') {
@@ -232,15 +227,11 @@ function fonteCompatible(cartHardware, fonte) {
             }
         });
     }
-
-    // Adicionar conectores necessários para armazenamento \\
     if (armazenamento.data) { 
         if (armazenamento.data.attributes.tipo === 'SATA') {
             conectoresNecessarios['sata7pin']++;
         }
     }
-
-    // Verificar se a fonte possui conectores suficientes \\
     const conectoresFonte = fonte.conectores_alimentacao;
     Object.keys(conectoresNecessarios).forEach(conector => {
         if (conectoresFonte[conector] < conectoresNecessarios[conector]) {
