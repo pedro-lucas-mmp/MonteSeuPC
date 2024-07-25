@@ -118,6 +118,9 @@ function cpu_coolerVSprocessador(cartHardware, cpuCooler){
         if (!cpuCooler.socket_compatibility[placa_maeCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket da Placa mãe.");
         }
+        if (processadorCart.tdp > cpuCooler.tdp){
+            incompatibilidades.push("CPU cooler possui má dissipação para o Processador selecionado.");
+        }
     } else if (processadorPresente) {
         if (!cpuCooler.socket_compatibility[processadorCart.socket]) {
             incompatibilidades.push("CPU cooler é incompatível com o socket do Processador.");
