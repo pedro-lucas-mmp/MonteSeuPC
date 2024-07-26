@@ -1195,7 +1195,8 @@ export interface ApiGabineteGabinete extends Schema.CollectionType {
         'Xigmatek',
         'Zalman',
         'Chieftec',
-        'TGT'
+        'TGT',
+        'T-Dagger'
       ]
     > &
       Attribute.Required;

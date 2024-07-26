@@ -40,7 +40,8 @@
         "Xigmatek",
         "Zalman",
         "Chieftec",
-        "TGT"
+        "TGT",
+        "T-Dagger"
       ],
       "required": true
     },
