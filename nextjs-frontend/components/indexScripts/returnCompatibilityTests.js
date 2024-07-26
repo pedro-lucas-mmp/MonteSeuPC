@@ -1,6 +1,26 @@
 function processadorCompatible(cartHardware, processador) {
     let incompatibilidades = [];
-    incompatibilidades = processadorVSplaca_mae(cartHardware, processador)
+    let retorno = [];
+    retorno = processadorVSplaca_mae(cartHardware, processador)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
+    retorno = processadorVideoIntegrado(cartHardware, processador);
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
+    return incompatibilidades;
+}
+function processadorVideoIntegrado(cartHardware, processador){
+    const incompatibilidades = [];
+    const placa_de_videoCart = cartHardware?.placa_de_video?.data?.attributes;
+    const processadorCart = cartHardware?.processador?.data?.attributes;
+    if (!placa_de_videoCart) {
+        if (processadorCart == processador && processador.grafico_integrado === false){
+            incompatibilidades.push("Processador não possui vídeo integrado, selecione uma Placa de Vídeo.");
+        }
+        return incompatibilidades;
+    }
     return incompatibilidades;
 }
 function processadorVSplaca_mae(cartHardware, processador){
@@ -166,10 +186,31 @@ function armazenamentoVSplaca_mae(cartHardware, armazenamento){
 //////////////////////////////////////////////////////ARMAZENAMENTO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function placaVideoCompatible(cartHardware, placaVideo) {
     let incompatibilidades = [];
-    incompatibilidades = placa_de_videoVSplaca_mae(cartHardware, placaVideo)
+    let retorno = [];
+    retorno = placa_de_videoVSplaca_mae(cartHardware, placaVideo)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
+    retorno = validarComprimentoPlaca_de_videoGabinete(cartHardware, placaVideo)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
     return incompatibilidades;
 }
-
+function validarComprimentoPlaca_de_videoGabinete(cartHardware, placaVideo) {
+    const incompatibilidades = [];
+    const gabineteCart = cartHardware?.gabinete?.data?.attributes;
+    if (!!gabineteCart){
+        if (placaVideo.dimensao.comprimento > gabineteCart.comprimento_gpu){
+            incompatibilidades.push("Placa de Vídeo é comprida demais para o Gabinete.");
+        }else{
+           
+        }
+    }else{
+        return incompatibilidades;
+    }
+    return incompatibilidades;
+}
 function placa_de_videoVSplaca_mae(cartHardware, placaVideo){
     const incompatibilidades = []
     if (!!cartHardware?.placa_mae?.data?.attributes){
@@ -256,6 +297,10 @@ function gabineteCompatible(cartHardware, gabinete) {
     if (retorno.length > 0) {
         incompatibilidades = incompatibilidades.concat(retorno);
     }
+    retorno = gabineteVSplaca_de_video(cartHardware, gabinete)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
     
     return incompatibilidades;
 }
@@ -270,6 +315,32 @@ function gabineteVSplaca_mae(cartHardware, gabinete){
         }
     return incompatibilidades;
 }
+function gabineteVSplaca_de_video(cartHardware, gabinete){
+    let incompatibilidades = [];
+    let retorno = [];
+
+    retorno = validarComprimentoGabinetePlaca_de_video(cartHardware, gabinete)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
+    return incompatibilidades;
+}
+
+function validarComprimentoGabinetePlaca_de_video(cartHardware, gabinete){
+    const incompatibilidades = [];
+    const placa_de_videoCart = cartHardware?.placa_de_video?.data?.attributes;
+    if (!!placa_de_videoCart){
+        if (placa_de_videoCart.dimensao.comprimento > gabinete.comprimento_gpu){
+            incompatibilidades.push("Gabinete não comporta comprimento da Placa de Vídeo.");
+        }else{
+           
+        }
+    }else{
+        return incompatibilidades;
+    }
+    return incompatibilidades;
+}
+
 function gabineteVScpu_cooler(cartHardware, gabinete) {
     let incompatibilidades = [];
     let retorno = [];

@@ -526,6 +526,9 @@ const GlobalStyles = () => (
         }
         .atributo {
             font-weight: bold;
+            a{
+                text-decoration: none;
+            }
         }
         .popup-envio{
             width: 80%;

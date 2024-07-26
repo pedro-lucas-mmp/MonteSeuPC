@@ -268,6 +268,10 @@ const info = (hardware, type='') =>{
         </ul>
       </div>)}
 
+      {hardware?.attributes?.link !== null && 
+      <div className={`item-table-card${type}`}>
+        <span className='atributo'><a href={hardware.attributes.link} target="_blank" rel="noopener noreferrer">Ir para o Site da Fabricante</a></span>
+      </div>}
 
       </>
     )}

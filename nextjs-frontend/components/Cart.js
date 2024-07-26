@@ -133,6 +133,7 @@ const CartStyled = styled.div`
   }
 
   .header {
+    overflow-wrap: break-word;
     position: relative;
     border: 1px solid #ccc;
     width: 100%;
