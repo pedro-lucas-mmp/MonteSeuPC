@@ -220,8 +220,8 @@ const info = (hardware, type='') =>{
         <ul className='item'>
           {Object.entries(hardware.attributes.conectores_alimentacao)
             .filter(([key, valor]) => key !== 'id' && valor)
-            .map(([key, socket]) => (
-              <li key={socket}>{key}: {socket}</li>
+            .map(([key2, socket]) => (
+              <li key={key2}>{key2}: {socket}</li>
             ))}
         </ul>
       </div>)}

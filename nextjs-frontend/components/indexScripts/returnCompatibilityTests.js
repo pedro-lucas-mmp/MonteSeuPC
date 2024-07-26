@@ -64,7 +64,15 @@ function validarGeracaoProcessador(cartHardware, processador){
 //////////////////////////////////////////////////////PROCESSADOR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function placa_maeCompatible(cartHardware, placa_mae) {
     let incompatibilidades = [];
-    incompatibilidades = placa_maeVSprocessador(cartHardware, placa_mae)
+    let retorno = [];
+    retorno = placa_maeVSprocessador(cartHardware, placa_mae)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
+    retorno = placa_maeVSarmazenamento(cartHardware, placa_mae)
+    if (retorno.length > 0) {
+        incompatibilidades = incompatibilidades.concat(retorno);
+    }
     return incompatibilidades;
 }
 function placa_maeVSprocessador(cartHardware, placa_mae){
@@ -98,6 +106,22 @@ function validarSocketPlaca_mae(cartHardware, placa_mae){
             incompatibilidades.push("Socket da placa-mãe é incompatível com o processador.");}
     }
     // else{incompatibilidades.push("Processador não selecionado para verificar compatibilidade");}
+    return incompatibilidades;
+}
+function placa_maeVSarmazenamento(cartHardware, placa_mae){
+    const incompatibilidades = [];
+    
+    if (!!cartHardware?.armazenamento?.data?.attributes){
+        const armazenamento = cartHardware.armazenamento.data.attributes
+        const { conectores_armazenamento_sata, conectores_armazenamento_m2 } = placa_mae;
+    if ((armazenamento.tipo === "SSD NVME" || armazenamento.tipo === "SSD M.2 Sata") && conectores_armazenamento_m2 <= 0) {
+        incompatibilidades.push("Placa-mãe não possui conectores M.2 suficientes para SSD M.2.");
+    }
+    if ((armazenamento.tipo !== "SSD NVME" || armazenamento.tipo !== "SSD M.2 Sata") && conectores_armazenamento_sata <= 0) {
+        incompatibilidades.push("Placa-mãe não possui conectores SATA suficientes para o armazenamento.");
+    }}else {
+        // incompatibilidades.push("Placa mãe não selecionada para verificar compatibilidade.");
+    }
     return incompatibilidades;
 }
 //////////////////////////////////////////////////////PLACA_MAE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -166,22 +190,19 @@ function armazenamentoCompatible(cartHardware, armazenamento) {
 }
 
 function armazenamentoVSplaca_mae(cartHardware, armazenamento){
-    const incompatibilidades = []
-    
+    const incompatibilidades = [];
     
     if (!!cartHardware?.placa_mae?.data?.attributes){
         const { conectores_armazenamento_sata, conectores_armazenamento_m2 } = cartHardware.placa_mae.data.attributes;
-    if (armazenamento.tipo === "SSD NVME" && conectores_armazenamento_m2 <= 0) {
-        incompatibilidades.push("Placa-mãe não possui conectores M.2 suficientes para SSD NVME.");
+    if ((armazenamento.tipo === "SSD NVME" || armazenamento.tipo === "SSD M.2 Sata") && conectores_armazenamento_m2 <= 0) {
+        incompatibilidades.push("Placa-mãe não possui conectores M.2 suficientes para SSD M.2.");
     }
-    if (armazenamento.tipo !== "SSD NVME" && conectores_armazenamento_sata <= 0) {
+    if ((armazenamento.tipo !== "SSD NVME" || armazenamento.tipo !== "SSD M.2 Sata") && conectores_armazenamento_sata <= 0) {
         incompatibilidades.push("Placa-mãe não possui conectores SATA suficientes para o armazenamento.");
     }}else {
         // incompatibilidades.push("Placa mãe não selecionada para verificar compatibilidade.");
     }
-
     return incompatibilidades;
-
 }
 //////////////////////////////////////////////////////ARMAZENAMENTO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function placaVideoCompatible(cartHardware, placaVideo) {
@@ -225,17 +246,11 @@ function placa_de_videoVSplaca_mae(cartHardware, placaVideo){
 //////////////////////////////////////////////////////FONTE\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 function fonteCompatible(cartHardware, fonte) {
     const incompatibilidades = [];
-
-    if (!cartHardware?.placa_mae?.data || !cartHardware?.processador?.data || !cartHardware?.placa_de_video?.data || !cartHardware?.armazenamento?.data) {
-        incompatibilidades.push("Selecione mais peças para verificar compatibilidade geral");
-        return incompatibilidades;
-    }
     
     const { processador, placa_de_video, placa_mae, armazenamento } = cartHardware;
-    const totalTDP = processador.data.attributes.tdp + placa_de_video.data.attributes.tdp;
+    const totalTDP = (processador?.data?.attributes?.tdp ? processador.data.attributes.tdp : 0) + (placa_de_video?.data?.attributes?.tdp ? placa_de_video.data.attributes.tdp : 0);
 
-
-    const eficiencia =  fonte.selo_eficiencia === 'Generic' ? 0.8 :
+    const eficiencia =  fonte.selo_eficiencia === 'Generic' ? 0.75 :
                         fonte.selo_eficiencia === 'PLUS 80 White' ? 0.8 : 
                         fonte.selo_eficiencia === 'PLUS 80 Bronze' ? 0.82 :
                         fonte.selo_eficiencia === 'PLUS 80 Silver' ? 0.85 :
@@ -257,22 +272,22 @@ function fonteCompatible(cartHardware, fonte) {
         'pcie12pin': 0,
         'molex4pin': 0
     };
-    if (placa_mae.data.attributes.conectores_alimentacao) {
-        Object.keys(placa_mae.data.attributes.conectores_alimentacao).forEach(key => {
+    if (placa_mae?.data?.attributes?.conectores_alimentacao) {
+        Object.keys(placa_mae?.data?.attributes?.conectores_alimentacao).forEach(key => {
             if (key !== 'id') {
-                conectoresNecessarios[key] += placa_mae.data.attributes.conectores_alimentacao[key];
+                conectoresNecessarios[key] += placa_mae?.data?.attributes?.conectores_alimentacao[key];
             }
         });
     }
-    if (placa_de_video.data.attributes.conectores_alimentacao) {
-        Object.keys(placa_de_video.data.attributes.conectores_alimentacao).forEach(key => {
+    if (placa_de_video?.data?.attributes?.conectores_alimentacao) {
+        Object.keys(placa_de_video?.data?.attributes?.conectores_alimentacao).forEach(key => {
             if (key !== 'id') {
-                conectoresNecessarios[key] += placa_de_video.data.attributes.conectores_alimentacao[key];
+                conectoresNecessarios[key] += placa_de_video?.data.attributes?.conectores_alimentacao[key];
             }
         });
     }
-    if (armazenamento.data) { 
-        if (armazenamento.data.attributes.tipo === 'SATA') {
+    if (armazenamento?.data) { 
+        if (armazenamento?.data?.attributes?.tipo === 'SATA') {
             conectoresNecessarios['sata7pin']++;
         }
     }
