@@ -23,28 +23,40 @@ const Galeria = ({userJwt, userData, usersData}) => {
                 img.src = reader.result;
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
-                    console.log(canvas)
-                    const aspect_ratio = 1.5;
-                    const height_crop = img.width / aspect_ratio;
-                    const width_crop = img.height * aspect_ratio;
-                    if (height_crop < img.height) {
-                        canvas.width = img.width;
-                        canvas.height = height_crop;
-                    }
-                    if (width_crop < img.width) {
-                        canvas.width = width_crop;
-                        canvas.height = img.height;
-                    }
-                    else{
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                    }
-                    
                     const ctx = canvas.getContext('2d');
+                    const aspect_ratio = 1.5;
+                    const originalWidth = img.width;
+                    const originalHeight = img.height;
+
+                    let width_crop, height_crop;
+
+                    if (originalWidth >= originalHeight) {
+                        // Imagem horizontal
+                        height_crop = originalWidth / aspect_ratio;
+                        width_crop = originalWidth;
+                        if (height_crop > originalHeight) {
+                            height_crop = originalHeight;
+                            width_crop = originalHeight * aspect_ratio;
+                        }
+                    } else {
+                        // Imagem vertical
+                        width_crop = originalWidth;
+                        height_crop = originalWidth / aspect_ratio;
+                        if (height_crop > originalHeight) {
+                            height_crop = originalHeight;
+                            width_crop = originalHeight * aspect_ratio;
+                        }
+                    }
+                    canvas.width = width_crop;
+                    canvas.height = height_crop;
+
+                    const xOffset = (originalWidth - width_crop) / 2;
+                    const yOffset = (originalHeight - height_crop) / 2;
+
                     ctx.drawImage(
                         img,
-                         0,
-                         0
+                        xOffset, yOffset, width_crop, height_crop,
+                        0, 0, canvas.width, canvas.height
                     );
                     canvas.toBlob(
                         (blob) => {
@@ -52,7 +64,6 @@ const Galeria = ({userJwt, userData, usersData}) => {
                                 type: "image/png",
                                 lastModified: Date.now(),
                             });
-                            console.log(file);
                             setSelectedImage(file);
                         },
                         "image/jpeg",
