@@ -23,4 +23,3 @@ Para iniciar, será necessário baixar o projeto e executar os seguintes process
   - Após inicialização do o comando npm run develop em strapi-backend, será possível o acesso ao painel administrativo do Strapi, devidamente com a URL(http://localhost:1337/admin).
     - Email do Backend(Strapi): admin@admin.com
     - Senha do Backend(Strapi): Admin123
-a
