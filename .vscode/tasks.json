@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"path": "nextjs-frontend",
+			"problemMatcher": [],
+			"label": "npm: dev - nextjs-frontend",
+			"detail": "next dev"
+		},
+		{
+			"type": "npm",
+			"script": "develop",
+			"path": "strapi-backend",
+			"problemMatcher": [],
+			"label": "npm: develop - strapi-backend",
+			"detail": "strapi develop"
+		}
+	]
+}

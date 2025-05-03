@@ -35,9 +35,10 @@ export default function Login({route}) {
       }
 
     if (res.jwt && res.user) {
+      /*secure: process.env.NODE_ENV !== 'development',*/
     Cookies.set('jwt', res.jwt, {
         httpOnly: false,
-        secure: process.env.NODE_ENV !== 'development',
+        secure: false,
         sameSite: 'strict',
         expires: 30
     });
