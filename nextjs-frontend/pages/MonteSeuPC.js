@@ -32,7 +32,7 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
   const [renderKey, setRenderKey] = useState(0)
   const [url, setUrl] = useState('')
   const router = useRouter();
-  const API_URL = process.env['API_URL'];
+  const API_URL = process.env['NEXT_PUBLIC_API_URL'];
   ///USERDATA\\\
   const [jwt, setJwt] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -380,7 +380,7 @@ function returnPopulateCartFields(){
 }
 
 async function returnCartTable(userCartId, userJwt){
-  const API_URL = process.env['API_URL'];
+  const API_URL = process.env['NEXT_PUBLIC_API_URL'];
   const reqOptionsCart = {
     method: 'GET',
     headers: {

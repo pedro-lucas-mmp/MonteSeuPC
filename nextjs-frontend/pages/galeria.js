@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
 const Galeria = ({userJwt, userData, usersData}) => {
-    const API_URL = process.env['API_URL'];
+    const API_URL = process.env['NEXT_PUBLIC_API_URL'];
     const API_URL_IMAGE = process.env['NEXT_PUBLIC_API_URL_IMAGE'];
     const [showInput, setShowInput] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);

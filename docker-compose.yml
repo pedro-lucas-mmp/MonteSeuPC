@@ -1,0 +1,84 @@
+version: "3.8"
+
+services:
+  frontend_mspc:
+    container_name: frontend_monte_seu_pc
+    build:
+      context: ./nextjs-frontend
+      args:
+        - API_URL=${API_URL}
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+        - NEXT_PUBLIC_API_URL_IMAGE=${NEXT_PUBLIC_API_URL_IMAGE}
+    image: monte-seu-pc-frontend:latest
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - API_URL=${API_URL}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - NEXT_PUBLIC_API_URL_IMAGE=${NEXT_PUBLIC_API_URL_IMAGE}
+    depends_on:
+      - backend_mspc
+    networks:
+      - montepc_network
+    env_file:
+      - .env
+
+  backend_mspc:
+    container_name: backend_monte_seu_pc
+    build:
+      context: ./strapi-backend
+      args:
+        - URL=${URL}
+    image: monte-seu-pc-backend:latest
+    ports:
+      - "1338:1338"
+    environment:
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - APP_KEYS=${APP_KEYS}
+      - API_TOKEN_SALT=${API_TOKEN_SALT}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET}
+      - TRANSFER_TOKEN_SALT=${TRANSFER_TOKEN_SALT}
+      - JWT_SECRET=${JWT_SECRET}
+      - DATABASE_CLIENT=${DATABASE_CLIENT}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      - URL=${URL}
+    depends_on:
+      - postgres_mspc
+    networks:
+      - montepc_network
+    volumes:
+      - backend_mspc_uploads:/app/public/uploads
+    env_file:
+      - .env
+
+  postgres_mspc:
+    container_name: postgres_monte_seu_pc
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata_mspc:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - montepc_network
+    env_file:
+      - .env
+
+volumes:
+  pgdata_mspc:
+  backend_mspc_uploads:
+
+networks:
+  montepc_network:
+    driver: bridge
+

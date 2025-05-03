@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 export default function Register({route}) {
   const [message, setMessage] = useState([]);
   const errorsMessage = message?.details?.errors?.map(error => error.message) || []  
-  const API_URL = process.env['API_URL'];
+  const API_URL = process.env['NEXT_PUBLIC_API_URL'];
   const register = async (event) => {
     event.preventDefault();
     setMessage(null);

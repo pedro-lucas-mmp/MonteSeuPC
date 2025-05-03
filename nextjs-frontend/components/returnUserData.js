@@ -1,5 +1,5 @@
 export default async function fetchUserData(token,setUserData, setLoading, route){
-    const API_URL = process.env['API_URL'];
+    const API_URL = process.env['NEXT_PUBLIC_API_URL'];
     const reqOptions = {
         method: 'GET',
         headers: {

@@ -12,7 +12,7 @@ export default function Login({route}) {
     setMessage(null);
     const formData = new FormData(event.target);
     const jsonData = Object.fromEntries(formData);
-    const API_URL = process.env['API_URL'];
+    const API_URL = process.env['NEXT_PUBLIC_API_URL'];
     const reqOptions = {
       method: 'POST',
       headers: {
