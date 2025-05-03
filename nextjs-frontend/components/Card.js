@@ -61,8 +61,8 @@ export default function Card({ hardware, tipo, cartAdd, isCompatible, cartData, 
               <i className="fa-solid fa-exclamation custom-size"></i>
             </div> 
             ) : null}
-            {API_URL_IMAGE == process.env.API_URL ? <img onClick={() => togglePopup(API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url} /> : <img onClick={() => togglePopup(hardware.attributes.imagem.data.attributes.url)} src={hardware.attributes.imagem.data.attributes.url} />}
-            {/* <img onClick={() => togglePopup(API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url} /> */}
+            {/* API_URL_IMAGE == process.env.API_URL ? <img onClick={() => togglePopup(API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url} /> : <img onClick={() => togglePopup(hardware.attributes.imagem.data.attributes.url)} src={hardware.attributes.imagem.data.attributes.url} /> */}
+            {<img onClick={() => togglePopup(API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url)} src={API_URL_IMAGE + hardware.attributes.imagem.data.attributes.url} />}
           </div>
           <div className='item-nome'>
               <strong >{hardware.attributes.nome}</strong>
