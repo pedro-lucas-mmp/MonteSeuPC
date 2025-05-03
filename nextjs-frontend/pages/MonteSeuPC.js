@@ -399,16 +399,16 @@ async function returnCartTable(userCartId, userJwt){
 }
 
 function returnTablesUrls(){
-  const { API_URL } = process.env;
+  const { NEXT_PUBLIC_API_URL } = process.env;
   const tableUrls = [
-    `${API_URL}/api/processadores/?populate=*`,
-    `${API_URL}/api/placa-maes/?populate=*`,
-    `${API_URL}/api/memoria-rams/?populate=*`,
-    `${API_URL}/api/placa-de-videos/?populate=*`,
-    `${API_URL}/api/gabinetes/?populate=*`,
-    `${API_URL}/api/fontes/?populate=*`,
-    `${API_URL}/api/cpu-coolers/?populate=*`,
-    `${API_URL}/api/armazenamentos/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/processadores/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/placa-maes/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/memoria-rams/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/placa-de-videos/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/gabinetes/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/fontes/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/cpu-coolers/?populate=*`,
+    `${NEXT_PUBLIC_API_URL}/api/armazenamentos/?populate=*`,
   ];
 
   return tableUrls
