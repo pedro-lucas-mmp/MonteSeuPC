@@ -156,7 +156,7 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
         if (!response.ok) {
           throw new Error('Problema na função cartAdd()');
         }
-        const updatedCartResponse = await fetch(`${process.env.API_URL}/api/carts/${cartId}?${returnPopulateCartFields()}`);
+        const updatedCartResponse = await fetch(`${API_URL}/api/carts/${cartId}?${returnPopulateCartFields()}`);
         const updatedCartData = await updatedCartResponse.json();
         setCartData(updatedCartData.data.attributes);
         if(guiado){
