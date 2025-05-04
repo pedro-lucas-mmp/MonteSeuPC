@@ -146,7 +146,7 @@ const MonteSeuPC = ({ processadorData, placa_maeData, cart, memoria_ramData, pla
     if (tiposValidos.includes(tipo)) {
       try {
         if (cartData[tipo]?.data?.id !== valor || guiado){
-        const response = await fetch(`${API_URL}/api/carts/${cartId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/carts/${cartId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
