@@ -52,8 +52,8 @@ export default function Cart({ hardware, tipo, isCompatible, cartData, itemTittl
             </div> 
             ) : null}
             <i className="fa-solid fa-x deleteX" onClick={() => cartAdd(tipo, 0, 'delete')}></i>
-            {API_URL_IMAGE == process.env.API_URL ?  <img onClick={() => togglePopup(API_URL_IMAGE + hardware_url)} src={API_URL_IMAGE + hardware_url} alt={hardware.data.attributes.nome} /> : <img onClick={() => togglePopup(hardware_url)} src={hardware_url} alt={hardware.data.attributes.nome} />}
-            {/* <img onClick={() => togglePopup(API_URL_IMAGE + hardware_url)} src={API_URL_IMAGE + hardware_url} alt={hardware.data.attributes.nome} /> */}
+            {/* API_URL_IMAGE == process.env.API_URL ?  <img onClick={() => togglePopup(API_URL_IMAGE + hardware_url)} src={API_URL_IMAGE + hardware_url} alt={hardware.data.attributes.nome} /> : <img onClick={() => togglePopup(hardware_url)} src={hardware_url} alt={hardware.data.attributes.nome} /> */}
+            {<img onClick={() => togglePopup(API_URL_IMAGE + hardware_url)} src={API_URL_IMAGE + hardware_url} alt={hardware.data.attributes.nome} />}
           </div>
           <div className='details'>
           <span>{valorEmBRL(hardware.data.attributes.preco)}</span>
